@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'accounts',
+    'crispy_forms',
+    'crispy_bootstrap4'
     # "django_countries",
 ]
 
@@ -55,6 +57,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "BookBuddy.urls"
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
 
 TEMPLATES = [
     {

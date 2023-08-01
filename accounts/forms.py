@@ -17,3 +17,8 @@ class SignupForm(UserCreationForm):
         if(qs.exists()):
             self.add_error("username",f'"{username}" already exists. Please choose another one.')
         return data
+    
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model=newUser
+        fields=['username','email','phone_number','fav_books','user_profile_image']
