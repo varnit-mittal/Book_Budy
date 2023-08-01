@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<div style="margin: 8px;">  
+    <img class="w-32 h-32 md:h-auto rounded-full "src="{{user.user_profile_image.url}}" alt="{{user.user_profile_image}}" style="border-radius: 50%; height: 200px; max-width: 200px; object-fit: cover;">
+</div>
+
+<div style="margin: 8px;">
+    <p>Username: {{user.username}}</p>
+</div>
+
+<div style="margin: 8px;">
+    <p>Email: {{user.email}}</p>
+</div>
+
+<div style="margin: 8px;">
+    <p>Phone Number: {{user.phone_number}}</p>
+</div>
+<div style="margin: 8px;">
+    <p>Favourite Books: {{user.fav_books}}</p>
+</div>
+
+{% else %}
+<p>You are logged out. Do you want to <a href="/login/">login</a>?</p>
+{% endif %}
+
+{% endblock content %}
