@@ -8,12 +8,45 @@
             <div class="top_left">    
                 <h3>{{room.name}}</h3>
             </div>
-
+            
             <div class="box scroll">
-                <div class="room_info">
-                    <span>{{ room.created|timesince }} ago</span>
+                <div class="message_scroll">
+                    {% for message in room_messages %}
+                        <div class="messages_user">
+                            <span style="color: blue; font-weight: bold;">@{{ message.user.username }}</span>
+                            <span class="message_created">{{ message.created|timesince }} ago</span>
+                            {% if message.user == enter_user %}
+                            <a href="{% url 'message_delete' message.id %}">Delete</a>
+                            {% endif %}
+                        </div>
+                        <div class="message_details">
+                            {{message.body}}
+                        </div>
+                        {% endfor %}
+                </div>
+                <hr>
+                <div class="message_create">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="body" placeholder="Enter your message here..." />
+                    </form>
                 </div>
             </div>
+
+            <div class="participants">
+                <h3 class="title">Participants <span>{{ participants.count }} joined</span></h3>
+                <div class="participants_list">
+                    {% for participant in participants %}
+                    <div style="margin: 8px;">  
+                        <img class="w-15 h-15 md:h-auto rounded-full "src="{{participant.user_profile_image.url}}" alt="{{participant.user_profile_image}}" style="border-radius: 50%; height: 50px; max-width: 50px; object-fit: cover;">
+                    </div>
+                    <p>
+                        <span>@{{ participant.username }}</span>
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </div>
 </main>

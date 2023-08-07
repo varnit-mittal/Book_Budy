@@ -34,7 +34,7 @@ def recommend_genres_for_movie(movie_title):
     return recommended_genre
 
 # Create your views here.
-@login_required
+@login_required(login_url='/login')
 def home(request):
     user=request.user
     books=str(user.fav_books)
@@ -59,7 +59,7 @@ def home(request):
     return render(request,'rooms/home.html',context=context)
 
 @csrf_protect
-@login_required(login_url='login/')
+@login_required(login_url='/login/')
 def room(request,pk,*args,**kwargs):
     room=Room.objects.get(id=pk)
     room_messages=room.message_set.all()
@@ -72,8 +72,9 @@ def room(request,pk,*args,**kwargs):
         )
         room.participants.add(request.user)
         return redirect('room',pk=room.id)
-    
+
     context={
+        'enter_user':request.user,
         'room':room,
         'room_messages':room_messages,
         'participants':participants
@@ -99,7 +100,7 @@ def createRoom(request):
         context['error']=True
     return render(request,'rooms/create.html',context=context)
 
-@login_required(login_url='login/')
+@login_required(login_url='/login/')
 @csrf_protect
 def deleteMessage(request,pk):
     message=Message.objects.get(id=pk)
