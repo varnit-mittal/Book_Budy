@@ -6,7 +6,7 @@ from .manager import UserManager
 class newUser(AbstractUser):
     email=models.EmailField(max_length=60,unique=True)
     phone_number=models.CharField(max_length=11,unique=True)
-    fav_books=models.CharField(max_length=100,null=True, blank=True)
+    fav_books=models.CharField(max_length=300,null=True, blank=True)
     user_profile_image=models.ImageField(upload_to="profile",default='default.jpg')
 
     objects=UserManager()

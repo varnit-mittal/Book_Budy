@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="box_layout">
+    <div class="container">
+        <div class="room" style="margin: 5px;">
+            <div class="top_left">    
+                <h3>{{room.name}}</h3>
+            </div>
+
+            <div class="box scroll">
+                <div class="room_info">
+                    <span>{{ room.created|timesince }} ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% include "base.html" %}
+
+{% block content %}
+
+{% if error %}
+<div>
+    <h2 style="color: red; font-weight: bold;"> Sorry, you don't have administrative priviledges</h2>
+</div>
+
+{% else %}
+<main class="createRoom">
+    <div class="container">
+        <div class="heading">
+            <h3>Create Room</h3>
+        </div>
+        <div class="forms">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div style="margin: 5px;">
+                    <label for="room_name">Room Name:</label>
+                    {{form.name}}
+                </div>
+                <div style="margin: 5px;">
+                    <button type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endif %}
+
+{% endblock content %}

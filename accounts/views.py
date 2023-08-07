@@ -34,7 +34,7 @@ def login_view(request):
             user=form.get_user()
             context['success']=True
             login(request,user)
-            return redirect('/')
+            return redirect('/books/home/')
     return render(request,'accounts/login.html',context=context)
 
 def logout_view(request):

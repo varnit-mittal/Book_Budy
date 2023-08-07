@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="room_home">
+
+<div class="roomList">
+    <form action="{% url 'home' %}" method="GET">
+        <div>
+            <label>
+                <title>Search</title>
+                <input type="text" name="q" placeholder="search for rooms" />
+            </label>
+        </div>
+    </form>
+    <div class="panel">
+        <button><a href="/logout/">Logout</a></button>
+        <button><a href="{% url 'create' %}"> Create Room</a></button>
+    </div>
+    <div class="chatRooms" style="margin: 10px;">
+        {% for x in recommends %}
+            <div class="room_name">
+                <a href="{% url 'room' x.id %}">{{ x.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+    {% include 'rooms/components.html' %}
+</div>
+
+</main>
+{% endblock content %}
