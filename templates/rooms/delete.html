@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="delete_item">
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h3 style="color: red;">Are you sure that you want to delete your message?</h3>
+            <button type="submit" value="yes" style="margin: 5px;" name='yes'>Yes</button>
+            <button type="submit" value="no" style="margin: 5px;" name='no'>No</button>
+        </form>
+
+    </div>
+</main>
+
+{% endblock content %}

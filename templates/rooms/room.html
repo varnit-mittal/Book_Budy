@@ -16,7 +16,7 @@
                             <span style="color: blue; font-weight: bold;">@{{ message.user.username }}</span>
                             <span class="message_created">{{ message.created|timesince }} ago</span>
                             {% if message.user == enter_user %}
-                            <a href="{% url 'message_delete' message.id %}">Delete</a>
+                            <a href="{% url 'message_delete' room.id  message.id %}">Delete</a>
                             {% endif %}
                         </div>
                         <div class="message_details">

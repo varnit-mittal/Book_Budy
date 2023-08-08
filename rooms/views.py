@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from .models import Room, Message
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -102,15 +103,15 @@ def createRoom(request):
 
 @login_required(login_url='/login/')
 @csrf_protect
-def deleteMessage(request,pk):
+def deleteMessage(request,rm,pk):
     message=Message.objects.get(id=pk)
-
     if request.user!=message.user:
         return HttpResponse("You are not allowed here!!")
     
     if request.method=='POST':
-        message.delete()
-        return redirect('home')
+        if request.POST.get('yes'):
+            message.delete()
+        return redirect('room',pk=rm)
     
     return render(request,'rooms/delete.html',{'obj':message})
 
