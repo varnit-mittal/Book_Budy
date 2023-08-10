@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'rooms',
     'payment',
+    'razorpay'
     # "django_countries",
 ]
 
@@ -140,3 +141,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL='/media/'
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+RAZOR_PAY_KEY_ID='rzp_test_ZbT6QOhFCEci69'
+RAZOR_KEY_SECRET='9GdaUZ8spIc9v0TH4gN6DAXj'

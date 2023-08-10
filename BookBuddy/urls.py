@@ -25,6 +25,7 @@ from accounts.views import (
 )
 from django.conf import settings
 from django.conf.urls.static import static
+from payment import views as pay
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -33,6 +34,8 @@ urlpatterns = [
     path('login/',login_view),
     path('logout/',logout_view),
     path('profile/',profile_view),
+    path('payment/',pay.gateway,name='payment'),
+    path('payment/success',pay.success,name='success'),
     path('',include('rooms.urls')),
 ]
 

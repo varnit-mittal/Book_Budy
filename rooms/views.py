@@ -55,7 +55,8 @@ def home(request):
     room_count=rooms.count()
     context={
         "rooms":rooms,
-        'recommends':recommend
+        'recommends':recommend,
+        'user':user
     }
     return render(request,'rooms/home.html',context=context)
 

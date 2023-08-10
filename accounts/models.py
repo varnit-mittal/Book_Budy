@@ -8,6 +8,7 @@ class newUser(AbstractUser):
     phone_number=models.CharField(max_length=11,unique=True)
     fav_books=models.CharField(max_length=300,null=True, blank=True)
     user_profile_image=models.ImageField(upload_to="profile",default='default.jpg')
+    payment=models.BooleanField(default=False)
 
     objects=UserManager()
 

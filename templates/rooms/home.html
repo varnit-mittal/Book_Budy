@@ -11,6 +11,11 @@
                 <title>Search</title>
                 <input type="text" name="q" placeholder="search for rooms" />
             </label>
+            {% if not user.payment %}
+            <a href="{% url 'payment' %}">Want the full package?</a>
+            {% else %}
+            <p style="color: red; font-weight: bold;">Premium activated</p>
+            {% endif %}
         </div>
     </form>
     <div class="panel">
