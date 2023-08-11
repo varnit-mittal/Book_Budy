@@ -2,6 +2,12 @@
 
 {% block content %}
 
+{% if error %}
+
+<p style="color: red; font-weight: bold;">You are already a premium user.</p>
+
+{% else %}
+
 <button id="rzp-button1">Pay</button>
 
 
@@ -39,5 +45,7 @@ document.getElementById('rzp-button1').onclick = function(e){
     e.preventDefault();
 }
 </script>
+
+{% endif %}
 
 {% endblock content %}

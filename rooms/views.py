@@ -21,7 +21,7 @@ from transformers import pipeline
 def recommend_genres_for_movie(movie_title):
     nlp = pipeline("zero-shot-classification",model='roberta-large-mnli')
 
-    genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Science Fiction"]
+    genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Science Fiction",'Crime','Detective','Thriller','Fantasy','Political Fiction']
     recommended_genre=[]
 
     for x in movie_title:
