@@ -1,0 +1,62 @@
+#logo{
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+}
+
+#form-container{
+    width:350px;
+    padding: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+
+.video-container{
+    flex-basis: 500px;
+    flex-grow: 1;
+    max-height: 100%;
+    min-height: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 2px;
+    background-color: gainsboro;
+}
+
+#video-streams{
+    display: flex;
+    flex-wrap: wrap;
+    height: 85vh;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.video-player{
+    height: 100%;
+    width: 100%;
+}
+
+#controls-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    column-gap: 1em;
+    position: fixed;
+    bottom: 10px;
+}
+
+.control-icon{
+    height:21px;
+    width: 21px;
+    box-shadow: 0 4px 6px -1px;
+    background-color: #D0BDF0;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#leave-btn{
+    background-color: red;
+}

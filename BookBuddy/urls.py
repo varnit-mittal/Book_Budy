@@ -37,6 +37,7 @@ urlpatterns = [
     path('payment/',pay.gateway,name='payment'),
     path('payment/success',pay.success,name='success'),
     path('',include('rooms.urls')),
+    path('',include('videos.urls'))
 ]
 
 
