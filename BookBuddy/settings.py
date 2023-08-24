@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-p9wd-&rirugh%($&yn@=^5ue2o+pccr0vq==m0w2%9416-m=#b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'payment',
     'razorpay',
     'videos',
+    'agora_token_builder'
     # "django_countries",
 ]
 

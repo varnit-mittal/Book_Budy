@@ -5,7 +5,9 @@
 
 <link rel="stylesheet" href="{% static 'styles/main.css' %}">
 
+
 <main>
+    {% if not error %}
     <section id="room-name-wrapper">
         <p>Room Name: <space id="room-name"></space></p>
     </section>
@@ -21,6 +23,11 @@
             <img src="{% static 'images/leave_icon.png' %}" alt="leave" class="control-icon" id="leave-btn">
         </div>
     </section>
+
+    {% else %}
+    <h2 style="font-size: 60px; color: red;">You are not a premium user. Want to <a href="{% url 'payment' %}">subscribe</a>?</h2>
+    {% endif %}
+
 </main>
 <script type="text/javascript" src="{% static 'SDK/AgoraRTC_N-4.18.2.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/streams.js' %}"></script>

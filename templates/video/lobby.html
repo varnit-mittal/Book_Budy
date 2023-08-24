@@ -4,32 +4,19 @@
 {% block content %}
 <main>
     {% if not error %}
-    <section id="form-container">
-        <img src="{% static 'images/myLogo.png' %}" alt="Company_logo" id="logo">
-
         <div>
+            <a href="{% url 'video_create' %}"><img src="{% static 'images/add_sign.png' %}" alt="create" class="control-icon"></a>
+        </div>
+
+        <div id="welcome-message">
             <h1>BookBuddy Community Centre</h1>
         </div>
-        <form action="" id="form">
-            <div class="form-field">
-                <input type="submit" id="" value="Join Stream"/>
-            </div>
-        </form>
-    </section>
+        
     {% else %}
     <h2 style="font-size: 60px; color: red;">You are not a premium user. Want to <a href="{% url 'payment' %}">subscribe</a>?</h2>
     {% endif %}
 </main>
 
-<script type="text/javascript">
-    let form=document.getElementById('form')
-
-    let sub= async(e)=>{
-        e.preventDefault()
-        window.open('{% url "video_room" %}','_self')
-    }
-
-    form.addEventListener('submit',sub)
-</script>
+{% include 'video/components.html' %}
 
 {% endblock content %}

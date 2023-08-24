@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -12,9 +13,9 @@
                 <input type="text" name="q" placeholder="search for rooms" />
             </label>
             {% if not user.payment %}
-            <a href="{% url 'payment' %}">Want the full package?</a>
+            <a href="{% url 'payment' %}">Want the full package to join the community?</a>
             {% else %}
-            <p style="color: red; font-weight: bold;">Premium activated</p>
+            <a href="{% url 'lobby' %}"><img src="{% static 'images/video_icon.png' %}" alt="video" class="control-icon"></a>
             {% endif %}
         </div>
     </form>

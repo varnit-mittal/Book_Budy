@@ -1,7 +1,8 @@
 const APP_ID='4327bff84d2f4b8bab98d752f8c1aae9'
-const CHANNEL='books'
-const TOKEN='007eJxTYMgVLlj78yTL5y3WupxsVoLXRX252J9npYSs/dq275J83VMFBhNjI/OktDQLkxSjNJMki6TEJEuLFHNTozSLZMPExFRLB/G7KQ2BjAyLxKcyMTJAIIjPypCUn59dzMAAAP5nHqs='
-let UID
+const CHANNEL=sessionStorage.getItem('room')
+const TOKEN=sessionStorage.getItem('token')
+const UID= Number(sessionStorage.getItem('UID'))
+const user=sessionStorage.getItem('user')
 
 const client=AgoraRTC.createClient({mode:'rtc',codec:'vp8'})
 
@@ -10,15 +11,25 @@ let remoteUsers= {}
 
 let joinAndDisplayLocalStream= async()=>{
 
+    document.getElementById('room-name').innerText=CHANNEL
+
     client.on('user-published', handleUserJoined)
     client.on('user-left',handleUserLeft)
 
-    UID=await client.join(APP_ID,CHANNEL,TOKEN,null)
+    try{
+        await client.join(APP_ID,CHANNEL,TOKEN,UID)
+    }catch(error){
+        console.log(error)
+        window.open('/video/lobby','_self')
+    }
+
 
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks()
 
+    let member= await createMember()
+
     let player=`<div class="video-container" id="user-container-${UID}">
-                    <div class="username-wrapper"><span class="user-name">My Name</span></div>
+                    <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
                     <div class="video-player" id="user-${UID}"></div>
                 </div>`
 
@@ -40,8 +51,10 @@ let handleUserJoined= async(user, mediaType) =>{
             player.remove()
         }
 
+        let member= await getMember(user)
+
         player=`<div class="video-container" id="user-container-${user.UID}">
-                    <div class="username-wrapper"><span class="user-name">My Name</span></div>
+                    <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
                     <div class="video-player" id="user-${user.UID}"></div>
                 </div>`
 
@@ -67,7 +80,39 @@ let leaveAndRemoveLocalStream = async ()=>{
     }
 
     await client.leave()
+    deleteMember()
     window.open('/video/lobby','_self')
+}
+
+let createMember= async ()=> {
+    let response= await fetch('/video/create_member/',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({'user':user,'uid':UID,'channelName':CHANNEL})
+    })
+
+    let member= await response.json()
+    return member
+}
+
+let getMember = async(user)=>{
+    let response= await fetch(`/video/get_member/?uid=${user.uid}&room_name=${CHANNEL}`)
+    let member= await response.json()
+    return member
+}
+
+let deleteMember= async ()=> {
+    let response= await fetch('/video/delete_member/',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({'user':user,'uid':UID,'room_name':CHANNEL})
+    })
+
+    let member= await response.json()
 }
 
 joinAndDisplayLocalStream()
@@ -97,3 +142,4 @@ let toggleMic = async(e)=>{
 }
 
 document.getElementById('mic-btn').addEventListener('click',toggleMic)
+window.addEventListener('beforeunload',deleteMember)

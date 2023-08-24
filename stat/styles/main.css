@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+:root {
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0,1),0 2px 4px -1px rgba(0,0,0,0.06);
+}
+
 #logo{
     display: block;
     width: 100px;
@@ -5,8 +11,11 @@
 }
 
 #form-container{
+    border: 2px black;
     width:350px;
     padding: 30px;
+    background-color: #f0e9ef;
+    box-shadow: 0 6px 8px -3px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -23,6 +32,7 @@
     border-radius: 5px;
     margin: 2px;
     background-color: gainsboro;
+    position: relative;
 }
 
 #video-streams{
@@ -36,6 +46,30 @@
 .video-player{
     height: 100%;
     width: 100%;
+}
+
+.video-player > *{
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width: 1650px) {
+    .video-container{
+        flex-basis: 300px;
+        min-height: 200px;
+    }    
+}
+
+.username-wrapper{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: ivory;
 }
 
 #controls-wrapper{
@@ -59,4 +93,79 @@
 
 #leave-btn{
     background-color: red;
+}
+
+.videoRoom{
+    height: 50px;
+    width: 100px;
+    box-shadow: 0 4px 6px -1px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px black;
+    text-align: center;
+}
+
+#welcome-message{
+    text-align: center;
+    margin: 20px;
+    font-size: 30px;
+}
+
+#welcome-message-create{
+    text-align: center;
+    margin: 20px;
+}
+
+#welcome-message-create h1{
+    font-size: 36px;
+}
+
+#welcome-message-create p{
+    font-size: 16px;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-field{
+    margin: 20px;
+}
+
+.form-field label{
+    font-size: 16px;
+    line-height: 1.7em;
+}
+
+.form-field input{
+    width: 100%;
+    border: 2px solid #D0BDF0;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.form-field input[type='submit']{
+    width: 100%;
+    background-color: #d3b4fe;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+@media screen and (max-width :450px){
+    #form-container{
+        width: 95%;
+    }
+
+    #welcome-message h1{
+        font-size: 24px;
+    }
+}
+
+#room-name-wrapper{
+    text-align: center;
+    font-size: 18px;
 }
