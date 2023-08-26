@@ -1,14 +1,64 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'styles/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/reg.css' %}">
+
+<!-- <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script> -->
 {% if not user.is_authenticated %}
-<div style="margin: 30px;">
-    <form action="" method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        {{ form.as_p }}
-            <button type="submit">Register</button>
-    </form>
-    <p>Already have an account? <a href="/login/">Login</a></p>
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-lg-6 m-auto" style="background-color: rgba(198, 198, 232, 0.843); box-shadow: 0 6px 8px -2px; border-radius: 5px;">
+            <h2 class="text-center pt-3">Signup Now</h2>
+            <p class="text-center text-muted lead">It's free and Takes a Minute</p>
+                <form action="" method="post" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div class="input-group m-2">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" placeholder="Username">
+                        <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                    </div>
+                    <div class="input-group m-2">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                        <input type="email" name="email" maxlength="60" required="" id="id_email" placeholder="Email">
+                    </div>
+                    <div class="input-group m-2">
+                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                        <input type="text" name="phone_number" maxlength="11" required="" id="id_phone_number" placeholder="Phone Number">
+                    </div>
+                    <div class="input-group m-2">
+                        <span class="input-group-text"><i class="fa fa-box"></i></span>
+                        <input type="text" name="fav_books" maxlength="300" id="id_fav_books" placeholder="Favourite Books">
+                    </div>
+                    <div class="input-group m-2">
+                        <span class="input-group-text"><i class="fa fa-portrait"></i></span>
+                        <input type="file" name="user_profile_image" accept="image/*" id="id_user_profile_image" placeholder="Profile Picture">
+                    </div>
+                    <div class="input-group m-2">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                        <span class="helptext"></span>
+                        <ul>
+                            <li>Your password can’t be too similar to your other personal information.</li>
+                            <li>Your password must contain at least 8 characters.</li>
+                            <li>Your password can’t be a commonly used password.</li>
+                            <li>Your password can’t be entirely numeric.</li>
+                        </ul>
+                    </div>
+                    <div class="input-group m-2">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                        <span class="helptext">Enter the same password as before, for verification.</span>
+                    </div>
+                        <div class="d-grid align-self-center">
+                            <button type="submit" class="btn btn-success" id="reg">Register</button>
+                        </div>
+                </form>
+                <p class="text-center mt-3">Already have an account? <a href="/login/">Login</a></p>
+        </div>
+    </div>
 </div>
 {% else %}
     <p>You are already logged in and cannot register. Would you like to <a href="/logout/">logout</a>?</p>
