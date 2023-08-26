@@ -1,15 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'styles/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+
 {% if user.is_authenticated %}
-    <div style="margin: 30px;">
+    <div style="margin: 30px;" class="p-4 m-3 m-auto">
         <form action="" method="post">
             {% csrf_token %}
-            <p>Are you sure you want to logout?</p>
-            <button type="submit">Logout</button>
+            <p style="font-size: 30px;" class="text-muted">Are you sure you want to logout?</p>
+            <button type="submit" style="border-radius: 10px;">Logout</button>
         </form>
 {% else %}
-<p>You are already logged out. Do you want to <a href="/login/">login</a>?</p>
+<p style="font-size: 30px;" class="p-4 m-3 m-auto text-center text-muted">You are already logged out. Do you want to <a href="/login/">login</a>?</p>
 {% endif %}
 </div>
 

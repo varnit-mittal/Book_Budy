@@ -52,16 +52,16 @@
                         <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
                         <span class="helptext">Enter the same password as before, for verification.</span>
                     </div>
-                        <div class="d-grid align-self-center">
-                            <button type="submit" class="btn btn-success" id="reg">Register</button>
-                        </div>
+                    <div class="d-grid align-self-center">
+                        <button type="submit" class="btn btn-success" style="background-color: rgba(22, 22, 208, 0.777);">Register</button>
+                    </div>
                 </form>
                 <p class="text-center mt-3">Already have an account? <a href="/login/">Login</a></p>
         </div>
     </div>
 </div>
 {% else %}
-    <p>You are already logged in and cannot register. Would you like to <a href="/logout/">logout</a>?</p>
+    <p style="font-size: 30px;" class="p-4 m-3 m-auto text-center text-muted">You are already logged in and cannot register. Would you like to <a href="/logout/">logout</a>?</p>
 {% endif %}
 
 

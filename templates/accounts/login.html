@@ -1,18 +1,38 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'styles/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/reg.css' %}">
+
 {% if not user.is_authenticated %}
-    <div style="margin: 30px;">
-        <form action="" method="post">
-            {% csrf_token %}
-                {{form.as_p}}
-                <button type="submit">Login</button>
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                <div class="col-lg-6 m-auto" style="background-color: rgba(198, 198, 232, 0.843); box-shadow: 0 6px 8px -2px; border-radius: 10px;">
+                    <h2 class="text-center pt-3" style="font-size: 40px;">Login</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" name="username" class="form-control" autofocus="" autocomplete="username" maxlength="150" required="" id="id_username">
+                        </div>
+                        <ul class="errorlist">
+                        </ul>
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            <input type="password" name="password" class="form-control" autocomplete="current-password" required="" id="id_password">
+                        </div>
+                        <div class="d-grid align-self-center">
+                            <button type="submit" class="btn btn-success" style="background-color: rgba(22, 22, 208, 0.777);">Login</button>
+                        </div>
+                    </form>
+                    <p class="text-center mt-3">Need an account? Please <a href="/signup/">Register</a>.</p>
+                </div>
             </div>
-        </form>
-        <p>Need an account? Please <a href="/signup/">Register</a>.</p>
-    </div>
+        </div>
 {% else %}
-<p>You are already logged in. Would you like to <a href="/logout/">logout</a>?</p>
+<p style="font-size: 30px;" class="p-4 m-3 m-auto text-center text-muted">You are already logged in. Would you like to <a href="/logout/">logout</a>?</p>
 {% endif %}
 
 {% endblock content %}

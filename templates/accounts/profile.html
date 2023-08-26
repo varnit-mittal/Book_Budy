@@ -1,44 +1,79 @@
 {% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'styles/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/reg.css' %}">
+
 {% if user.is_authenticated %}
-
-<div style="margin: 8px;">  
-    <img class="w-32 h-32 md:h-auto rounded-full "src="{{user.user_profile_image.url}}" alt="{{user.user_profile_image}}" style="border-radius: 50%; height: 200px; max-width: 200px; object-fit: cover;">
+<div class="container">
+    <div class="row mt-5 mb-5 text-center">
+        <div class="col-lg-6 m-auto" style="background-color: rgba(198, 198, 232, 0.843); box-shadow: 0 6px 8px -2px; border-radius: 10px;">
+            <h2 class="text-center pt-3" style="font-size: 50px;">Profile</h2>
+            <div class="mt-2 mb-2">
+                <img class="w-32 h-32 md:h-auto rounded-full " src="{{user.user_profile_image.url}}" alt="{{user.user_profile_image}}" style="border-radius: 50%; height: 200px; max-width: 200px; object-fit: cover;" >
+            </div>
+            <div class="mt-1 mb-1">
+                <p style="font-weight: bold; font-size: 25px;">{{user.username}}</p>
+            </div>
+            <div class="mt-1 mb-1">
+                <p style="font-weight: bold; font-size: 25px;">{{user.email}}</p>
+            </div>
+            <div class="mt-1 mb-1">
+                <p style="font-weight: bold; font-size: 25px;">{{user.phone_number}}</p>
+            </div>
+            <div class="mt-1 mb-1">
+                <p style="font-weight: bold; font-size: 25px;">{{user.fav_books}}</p>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div style="margin: 8px;">
-    <p>Username: {{user.username}}</p>
-</div>
-
-<div style="margin: 8px;">
-    <p>Email: {{user.email}}</p>
-</div>
-
-<div style="margin: 8px;">
-    <p>Phone Number: {{user.phone_number}}</p>
-</div>
-<div style="margin: 8px;">
-    <p>Favourite Books: {{user.fav_books}}</p>
-</div>
-
-<div style="margin: 30px;">
+<div style="margin-top: 90px; margin-left: 30px; margin-right: 30px;">
     <form action="" method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Profile Info</legend>
-            {{ form|crispy }}
+            <legend class="border-bottom mb-4" style="font-size: 30px;">Profile Update</legend>
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <input type="text" name="username" maxlength="150" class="textinput form-control is-invalid" required="" id="id_username" placeholder="{{ user.username }}">
+            </div>
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                <input type="email" name="email" maxlength="60" class="emailinput form-control is-invalid" required="" id="id_email" placeholder="{{ user.email }}">
+            </div>
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                <input type="text" name="phone_number" maxlength="11" class="textinput form-control is-invalid" required="" id="id_phone_number" placeholder="{{ user.phone_number }}">
+            </div>
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text"><i class="fa fa-box"></i></span>
+                <input type="text" name="fav_books" maxlength="300" class="textinput form-control" id="id_fav_books">
+            </div>
+            <div class="form-group mt-3 mb-3 ">
+                <span class="input-group-text"><i class="fa fa-portrait"></i></span>
+                <label for="id_user_profile_image" class=" requiredField">User profile image
+                    <span class="asteriskField">*</span>
+                </label>
+                <br>
+                <div>
+                    Currently: <a href="{{user.user_profile_image.url}}">{{user.user_profile_image}}</a>
+                    <br>
+                    Change:
+                    <input type="file" name="user_profile_image" accept="image/*" class="clearablefileinput form-control-file" id="id_user_profile_image"> </div>
+                </div>
         </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
+        <div class="d-grid align-self-center">
+            <button class="btn btn-success"  style="background-color: rgba(22, 22, 208, 0.777);" type="submit">Update</button>
         </div>
     </form>
     <p>
 </div>
 
 {% else %}
-<p>You are logged out. Do you want to <a href="/login/">login</a>?</p>
+<p style="font-size: 30px;" class="p-4 m-3 m-auto text-center text-muted">You are logged out. Do you want to <a href="/login/">login</a>?</p>
 {% endif %}
 
 {% endblock content %}
