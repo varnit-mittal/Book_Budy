@@ -38,15 +38,15 @@
             <legend class="border-bottom mb-4" style="font-size: 30px;">Profile Update</legend>
             <div class="input-group mt-3 mb-3">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
-                <input type="text" name="username" maxlength="150" class="textinput form-control is-invalid" required="" id="id_username" placeholder="{{ user.username }}">
+                <input type="text" name="username" maxlength="150" class="textinput form-control is-invalid" required="" id="id_username" value="{{ user.username }}">
             </div>
             <div class="input-group mt-3 mb-3">
                 <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                <input type="email" name="email" maxlength="60" class="emailinput form-control is-invalid" required="" id="id_email" placeholder="{{ user.email }}">
+                <input type="email" name="email" maxlength="60" class="emailinput form-control is-invalid" required="" id="id_email" value="{{ user.email }}">
             </div>
             <div class="input-group mt-3 mb-3">
                 <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                <input type="text" name="phone_number" maxlength="11" class="textinput form-control is-invalid" required="" id="id_phone_number" placeholder="{{ user.phone_number }}">
+                <input type="text" name="phone_number" maxlength="11" class="textinput form-control is-invalid" required="" id="id_phone_number" value="{{ user.phone_number }}">
             </div>
             <div class="input-group mt-3 mb-3">
                 <span class="input-group-text"><i class="fa fa-box"></i></span>
@@ -69,6 +69,7 @@
             <button class="btn btn-success"  style="background-color: rgba(22, 22, 208, 0.777);" type="submit">Update</button>
         </div>
     </form>
+    <a href="/logout/"><p class="text-center text-muted mt-3">Logout</p></a>
     <p>
 </div>
 

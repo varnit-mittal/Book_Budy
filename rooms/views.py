@@ -21,7 +21,7 @@ from transformers import pipeline
 def recommend_genres_for_movie(movie_title):
     nlp = pipeline("zero-shot-classification",model='roberta-large-mnli')
 
-    genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Science Fiction",'Crime','Detective','Thriller','Fantasy','Political Fiction']
+    genres = ["Action", "Comedy", "Drama", "Horror", "Romance",'Crime','Detective','Thriller','Fantasy','Political Fiction','Science Fiction']
     recommended_genre=[]
 
     for x in movie_title:
@@ -37,26 +37,36 @@ def recommend_genres_for_movie(movie_title):
 # Create your views here.
 @login_required(login_url='/login')
 def home(request):
-    user=request.user
+    username=request.user
+    user=User.objects.get(username=username)
+    part=list(User.objects.all())
+    # print(part)
     books=str(user.fav_books)
     books=list(books.split(','))
+    # print(books)
     temp=recommend_genres_for_movie(books)
     q=request.GET.get('q') if request.GET.get('q')!=None else ''
 
-    rooms=Room.objects.filter(
+    rooms=list(Room.objects.filter(
         Q(name__icontains=q)
-    )
+    ))
 
+    j=[]
+    first=rooms[0]
+    if len(rooms)>1:
+        for i in range(1,len(rooms)):
+            j.append(rooms[i])
     recommend=[]
 
     for x in rooms:
         if(x.name in temp):
             recommend.append(x)
-    room_count=rooms.count()
     context={
-        "rooms":rooms,
+        'first':first,
+        "rooms":j,
         'recommends':recommend,
-        'user':user
+        'user':user,
+        'participants':part
     }
     return render(request,'rooms/home.html',context=context)
 

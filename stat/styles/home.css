@@ -1,0 +1,45 @@
+#navbarSupportedContent li a{
+    font-weight: bold;
+}
+
+#navbarSupportedContent li a:hover{
+    background-color: ivory;
+    color: #333;
+    border-radius: 10px;
+    font-size: larger;
+}
+
+.front{
+    will-change: transform;
+    transition: transform 250ms;
+}
+
+.pushable:hover .front {
+    transform: translateY(-6px);
+}
+
+.pushable:active .front{
+    transform: translateY(-2px);
+}
+
+.pushable{
+    background: hsl(340deg, 100%, 32%);
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.front{
+    display: block;
+    padding: 0px 10px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg,100%,47%);
+    color: ivory;
+    transform: translateY(-4px);
+}
+
+.pushable:focus:not(:focus-visible){
+    outline: none;
+}
