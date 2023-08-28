@@ -110,10 +110,6 @@ Start server
 ```bash
   python manage.py runserver
 ```
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
 
 ## Authors
 
