@@ -1,6 +1,6 @@
 {% for room in rooms %}
-<form class="videoRoom" style="margin: 10px; border: 2px black;" id="room-{{room.uid}}" >
-    <div id="room_name-{{room.uid}}" name="room_name">
+<form class="videoRoom align-self-center m-auto mt-5 mb-5 p-2 lobby" style=" border: 2px black; width: 300px; height: 100px; background-color: rgba(123, 123, 214, 0.459);" id="room-{{room.uid}}" >
+    <div id="room_name-{{room.uid}}" name="room_name" style="font-weight: bold; font-size: 25px;">
         {{room.name}}
     </div>
 
