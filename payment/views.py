@@ -40,4 +40,4 @@ def success(request):
     premium_user=Premium.objects.get(razorpay_order_id=order_id)
     premium_user.is_paid=True
     premium_user.save()
-    return HttpResponse('Payment Success')
+    return redirect('/books/home/')

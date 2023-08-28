@@ -1,14 +1,18 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'styles/pay.css' %}">
+
 
 {% if error %}
 
 <p style="color: red; font-weight: bold;">You are already a premium user.</p>
 
 {% else %}
-
-<button id="rzp-button1">Pay</button>
+<p style="font-size: 80px;" class="p-4 m-3 m-auto text-center text-muted" id="rzp-button1">Pay ₹600</p>
 
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

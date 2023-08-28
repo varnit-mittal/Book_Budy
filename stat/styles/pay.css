@@ -1,0 +1,9 @@
+#rzp-button1:hover{
+    background-color: rgba(142, 129, 211, 0.612);
+    height: 150px;
+    width: 400px;
+    border-radius: 16px;
+    font-size: larger;
+    font-weight: bolder;
+    cursor:pointer;
+}
