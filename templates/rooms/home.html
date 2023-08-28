@@ -92,7 +92,7 @@
                     <div class="carousel-item active">
                         <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="150" height="400" xmlns="http://www.w3.org/2000/svg" style="border-radius: 10px;" role="img" aria-label="Placeholder: {{first.name}}" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect></svg>
                         <div class="carousel-caption d-none d-md-block">
-                            <a href="{% url 'room' first.id %}"><h4 class="text-white text-center" style="font-size: 50px; font-weight: bold;">{{first.name}}</h4></a>
+                            <a href="{% url 'room' first.id %}" style="text-decoration: none;"><h4 class="text-white text-center" style="font-size: 50px; font-weight: bold;">{{first.name}}</h4></a>
                             <p class="text-muted text-center " style="font-size: 25px;">{{ first.participants.all.count }} Participants Joined</p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                     <div class="carousel-item active">
                         <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="150" height="400" xmlns="http://www.w3.org/2000/svg" style="border-radius: 10px;" role="img" aria-label="Placeholder: {{room.name}}" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect></svg>
                         <div class="carousel-caption d-none d-md-block">
-                            <a href="{% url 'room' room.id %}"><h4 class="text-white text-center" style="font-size: 50px; font-weight: bold;">{{room.name}}</h4></a>
+                            <a href="{% url 'room' room.id %}" style="text-decoration: none;"><h4 class="text-white text-center" style="font-size: 50px; font-weight: bold;">{{room.name}}</h4></a>
                             <p class="text-muted text-center " style="font-size: 25px;">{{ room.participants.all.count }} Participants Joined</p>
                         </div>
                     </div>

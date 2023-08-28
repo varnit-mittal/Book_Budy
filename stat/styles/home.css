@@ -43,3 +43,7 @@
 .pushable:focus:not(:focus-visible){
     outline: none;
 }
+
+.carousel-caption a h4:hover{
+    background-color: ivory;
+}

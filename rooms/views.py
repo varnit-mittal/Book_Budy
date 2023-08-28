@@ -76,6 +76,7 @@ def room(request,pk,*args,**kwargs):
     room=Room.objects.get(id=pk)
     room_messages=room.message_set.all()
     participants=room.participants.all()
+    user=User.objects.get(username=request.user)
     if request.method=='POST':
         message=Message.objects.create(
             user=request.user,
@@ -86,7 +87,7 @@ def room(request,pk,*args,**kwargs):
         return redirect('room',pk=room.id)
 
     context={
-        'enter_user':request.user,
+        'enter_user':user,
         'room':room,
         'room_messages':room_messages,
         'participants':participants
