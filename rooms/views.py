@@ -18,14 +18,14 @@ import transformers
 
 from transformers import pipeline
 
-def recommend_genres_for_movie(movie_title):
+def recommend_genres_for_books(books_title):
     nlp = pipeline("zero-shot-classification",model='roberta-large-mnli')
 
     genres = ["Action", "Comedy", "Drama", "Horror", "Romance",'Crime','Detective','Thriller','Fantasy','Political Fiction','Science Fiction']
     recommended_genre=[]
 
-    for x in movie_title:
-        prompt = f"Which genre does the movie '{x}' belong to: {', '.join(genres)}?"
+    for x in books_title:
+        prompt = f"Which genre does the books '{x}' belong to: {', '.join(genres)}?"
         genre_result = nlp(prompt, genres)
 
         for i in range(0,2):
@@ -44,7 +44,7 @@ def home(request):
     books=str(user.fav_books)
     books=list(books.split(','))
     # print(books)
-    temp=recommend_genres_for_movie(books)
+    temp=recommend_genres_for_books(books)
     q=request.GET.get('q') if request.GET.get('q')!=None else ''
 
     rooms=list(Room.objects.filter(
