@@ -6,4 +6,4 @@ from django.contrib.auth.decorators import login_required
 
 
 def home_view(request,*args,**kwargs):
-    return render(request,'index.html',{})
+    return render(request,'landingPage/index.html',{})
